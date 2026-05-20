@@ -32,7 +32,7 @@ The drafts that produced this version live in the `papers/whitepaper-iteration/`
   title  = {{rrxiv}: An Open Protocol for Research Preprints in the Era of Human--Agent Coproduction},
   author = {Albis-Burdige, Blaise},
   year   = {2026},
-  url    = {https://rrxiv.org/papers/rrxiv:2605.00001},
+  url    = {https://rrxiv.com/papers/rrxiv:2605.00001},
   note   = {Whitepaper v1, protocol v0.1.0}
 }
 ```
