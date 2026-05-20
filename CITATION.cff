@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you cite rrxiv as a protocol, please cite this paper as the canonical reference."
+type: article
+title: "rrxiv: An Open Protocol for Research Preprints in the Era of Human-Agent Coproduction"
+authors:
+  - family-names: "Albis-Burdige"
+    given-names: "Blaise"
+    email: "albisburdige@protonmail.com"
+date-released: 2026-05-04
+license: CC-BY-4.0
+url: "https://rrxiv.org/papers/rrxiv:2605.00001"
+repository-code: "https://github.com/random-walks/rrxiv-whitepaper"
+keywords:
+  - preprint servers
+  - open science
+  - claim graphs
+  - AI agents
+  - scientific infrastructure
+  - protocol design
+preferred-citation:
+  type: article
+  title: "rrxiv: An Open Protocol for Research Preprints in the Era of Human-Agent Coproduction"
+  year: 2026
+  authors:
+    - family-names: "Albis-Burdige"
+      given-names: "Blaise"
+  notes: "Whitepaper v1, protocol v0.1.0"

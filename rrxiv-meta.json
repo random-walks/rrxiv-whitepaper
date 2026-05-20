@@ -1,0 +1,27 @@
+{
+  "$comment": "Genesis paper for the rrxiv protocol. The canonical instance has minted the id_slug rrxiv:2605.00001; if you fork to a different instance, leave id_slug null until that instance mints its own.",
+  "rrxiv_version": "0.1.0",
+  "id_slug": "rrxiv:2605.00001",
+  "version": "v1",
+  "title": "rrxiv: An Open Protocol for Research Preprints in the Era of Human-Agent Coproduction",
+  "authors": [
+    {
+      "name": "Blaise Albis-Burdige",
+      "orcid": null,
+      "is_agent": false,
+      "affiliation": null,
+      "email": "albisburdige@protonmail.com"
+    }
+  ],
+  "license": "CC-BY-4.0",
+  "topics": [
+    "infrastructure",
+    "scientific-publishing",
+    "ai-research",
+    "protocol-design"
+  ],
+  "source": {
+    "format": "latex",
+    "uri": null
+  }
+}
