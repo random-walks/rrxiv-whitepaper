@@ -47,12 +47,11 @@ if [[ -z "$RRXIV_CMD" ]]; then
   exit 127
 fi
 
-# `rrxiv parse` reads the .tex + the sidecar .rrxiv.aux + the standalone
-# meta and emits a CIR JSON document.
-$RRXIV_CMD parse \
-  --tex "$TEX" \
+# `rrxiv parse` reads the .tex + the sidecar .rrxiv.aux and emits a
+# CIR JSON document. (The standalone rrxiv-meta.json predates the
+# integrated meta-from-tex flow; not currently consumed by the CLI.)
+$RRXIV_CMD parse "$TEX" \
   --sidecar "$AUX" \
-  --meta "$META" \
-  --out "$OUT"
+  --output "$OUT"
 
 echo "OK  $OUT"
