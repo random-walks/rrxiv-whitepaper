@@ -7,7 +7,7 @@
 \documentclass[11pt]{rrxiv}
 
 \rrxivid{rrxiv-0001}
-\rrxivversion{v1}
+\rrxivversion{v2}
 \rrxivprotocolversion{0.1.0}
 \rrxivlicense{CC-BY-4.0}
 \rrxivtopics{infrastructure,scientific-publishing,ai-research,protocol-design}
@@ -29,7 +29,7 @@
 
 \medskip
 
-\noindent This whitepaper specifies (i)~the design principles motivating rrxiv; (ii)~the data model, including the Canonical Intermediate Representation (CIR) and the claim graph schema; (iii)~the source-of-truth substrate, based on TeX, Typst, and other plain-text formats with a recommended LaTeX class providing semantic environments; (iv)~the submission flow and dogfooding example; (v)~the annotation and discourse layer; (vi)~the governance model and improvement-proposal process; (vii)~a sustainability model based on agent-side API cost recovery cross-subsidizing free human read/write access; (viii)~adversarial considerations and structural defenses against the principal capture vectors; (ix)~explicit open questions that the project does not yet have answers to; and (x)~a roadmap from Phase 0 (specification) through subsequent phases. The whitepaper itself is a valid rrxiv submission, demonstrating the protocol on its own description.
+\noindent This whitepaper specifies (i)~the design principles motivating rrxiv; (ii)~the data model, including the Canonical Intermediate Representation (CIR) and the claim graph schema; (iii)~the source-of-truth substrate, based on TeX, Typst, and other plain-text formats with a recommended LaTeX class providing semantic environments; (iv)~the submission flow and dogfooding example; (v)~the annotation and discourse layer; (vi)~the governance model and improvement-proposal process; (vii)~a sustainability model based on agent-side API cost recovery cross-subsidizing free human read/write access; (viii)~adversarial considerations and structural defenses against the principal capture vectors; (ix)~explicit open questions that the project does not yet have answers to; and (x)~a roadmap from Phase 0 (specification) through subsequent phases. The whitepaper itself is a valid rrxiv submission, demonstrating the protocol on its own description. \textbf{v2 (May 2026):} the canonical instance is live at \texttt{rrxiv.com}; this revision adds a section summarising the protocol additions that landed between v0.1 and the present (RRPs 0012--0020), including server-derived replication status, semantic revision diffs, annotation threading, and author claim retraction.
 
 \medskip
 \noindent\textit{Keywords:} preprint servers, open science, claim graphs, AI agents, scientific infrastructure, protocol design.
@@ -393,6 +393,30 @@ The rrxiv project is structured in phases. Each phase has explicit deliverables 
 \paragraph{Phase 2 (Open Submission).} Open public submission, with abuse-handling and moderation infrastructure in place. Domain expansion to a second domain (likely a closely adjacent one such as theoretical computer science or quantitative finance, where the TeX adoption is high). The first domain council is formed. Definition of done: the corpus contains at least one thousand structured submissions and demonstrates measurable claim graph density.
 
 \paragraph{Phase 3 and beyond.} Domain expansion, governance maturation, sustainability validation, and---if warranted by usage and corpus size---transition to a foundation-style governance model with the existing structural commitments preserved as charter requirements. These phases are intentionally less specified at v0.1; the design at that point should reflect what was learned in Phases 0--2 rather than what was guessed at protocol launch.
+
+% ========================================================================
+\section{What shipped between v0.1 and v0.2 (v2 addendum)}
+\label{sec:shipped-v0.2}
+
+This section was added in the v2 revision (May 2026) to give readers landing on this whitepaper a current view of the protocol surface. It is a faithful summary of the accepted RRPs that landed after the v1 specification.
+
+\paragraph{Live canonical instance.} The reference instance runs at \texttt{rrxiv.com} (web) and \texttt{api.rrxiv.com/api/v0} (machine-readable). The Python reference server (\texttt{rrxiv-python}) implements every endpoint in \texttt{schema/api.openapi.yaml}. The Next.js web client is hosted on Vercel; the server runs on Fly.io with a SQLite store on a persistent volume. The deployment overlay is the \texttt{rrxiv-instance} repo; the seed corpus carries the whitepaper itself plus Euclid's \emph{Elements} (the first reproducibility example) and a small set of synthetic demo papers.
+
+\paragraph{The protocol additions, in order:}
+
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item \textbf{RRP-0012 (paper list-item projection).} The \texttt{Paper} stays immutable; the listing endpoint returns a derived \texttt{stats} block (claim counts, replicated/contradicted/contested counts, paper-level rollup status). Surface area: \texttt{GET /api/v0/papers}, \texttt{GET /api/v0/papers/\{id\}?include=stats}.
+  \item \textbf{RRP-0013 (human-friendly slugs).} Each paper carries an \texttt{id\_slug} of the form \texttt{rrxiv:YYMM.NNNNN}. UUIDv7 remains canonical for storage and edges; the slug is the URL-friendly handle. Server-minted at first submission; inherited by revisions.
+  \item \textbf{RRP-0014 (cursor pagination).} Every list endpoint accepts \texttt{?cursor=\&limit=}; offset pagination deprecated.
+  \item \textbf{RRP-0015 (meaty claims).} \texttt{Claim} grows four optional fields: \texttt{proof} (extracted from the paired \texttt{evidence} environment), \texttt{figures} (TikZ paths + captions), \texttt{source\_location} (file + line span), \texttt{pdf\_anchor}. The web client renders proofs inline on claim pages with KaTeX math.
+  \item \textbf{RRP-0016 (submission request schema).} The wire format for \texttt{POST /api/v0/submissions} is codified in \texttt{schema/submission\_request.schema.json}. Adds a \texttt{dry\_run} mode that runs full server-side validation (compile, parse, diff) without persisting---useful for CI on author repos. Adds an optional \texttt{client\_compile\_hash} for write integrity.
+  \item \textbf{RRP-0017 (revision flow + semantic diff).} Revisions carry a server-computed \texttt{RevisionDiff} via \texttt{GET /api/v0/papers/\{id\}/diff?from=<prior>}, with deterministic claim matching by stable \texttt{local\_id} (resilient to per-version \texttt{claim\_id} rebase) and word-level hunks for statement and proof changes. Authors may attach a \texttt{revision\_summary} annotation; the server synthesises a skeleton from the submission's form field.
+  \item \textbf{RRP-0018 (annotation threads).} Annotations carry an optional \texttt{in\_reply\_to} pointing at a parent. The server enforces same-artefact (same paper, and when both annotations target a claim, the same claim) and rejects self-replies. New convenience endpoint \texttt{GET /api/v0/annotations/\{id\}/replies}.
+  \item \textbf{RRP-0019 (reproducibility manifests).} The \texttt{replication} annotation payload now distinguishes \texttt{fresh\_replication} from \texttt{reproduction\_from\_artifacts} via a \texttt{reproduction\_kind} discriminator. Authors may attach a \texttt{ReproducibilityManifest} URI on the claim itself, describing the runtime environment + entrypoint. Server-side derivation: \texttt{claim.replication\_status} is computed from accumulated annotations using a per-discipline quorum (1 for math/formal verification, 2 for algorithms/crypto, 3 for ML and experimental sciences, 5 for behavioural/social) rather than read directly from the author-supplied field.
+  \item \textbf{RRP-0020 (author claim retraction).} A new \texttt{claim\_retraction} annotation type lets the paper's author retract a single claim without publishing a full v2. Reversible via a signed comment with \texttt{lifts\_retraction: true} from the same identity. Takes precedence over all other replication-status derivation.
+\end{itemize}
+
+\paragraph{What this revision dogfoods.} The submission of this v2 itself exercises the new flow end-to-end: the v1 paper\_id is passed as \texttt{previous\_version}; the server computes the \texttt{revision\_diff} between v1's CIR and v2's CIR (this section is the bulk of the addition); a \texttt{revision\_summary} annotation is synthesised from the CLI's \texttt{--revision-summary} text. The web client's new \texttt{/papers/[id]/versions/[from]} route renders the diff; the paper page's Versions rail surfaces a \texttt{diff} link between any two versions.
 
 % ========================================================================
 \section{Discussion}
