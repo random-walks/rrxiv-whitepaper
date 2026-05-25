@@ -2,7 +2,7 @@
   "$comment": "Genesis paper for the rrxiv protocol. The canonical instance has minted the id_slug rrxiv:2605.00001; if you fork to a different instance, leave id_slug null until that instance mints its own. The versions[] array records the lineage of prior submissions so scripts/submit.sh can auto-resolve --revision-of. v2 was retired in May 2026 (Sprint 8.5: stale CIR cleanup) — the active lineage on the canonical instance is v1 → v3 → v4 → v5.",
   "rrxiv_version": "0.1.0",
   "id_slug": "rrxiv:2605.00001",
-  "version": "v5",
+  "version": "v6",
   "title": "rrxiv: An Open Protocol for Research Preprints in the Era of Human-Agent Coproduction",
   "authors": [
     {
@@ -48,6 +48,12 @@
       "paper_id": "paper-a4d58c73b7cb",
       "submitted_at": "2026-05-22T20:33:47.311721Z",
       "notes": "Adds the testable-invariants section; still CIR-only — Sprint 12 audit found the PDF + tarball never made it to the server."
+    },
+    {
+      "version": "v5",
+      "paper_id": "rrxiv:2605.00001",
+      "submitted_at": "2026-05-25T17:25:59.335773Z",
+      "notes": "First submission via the canonical multipart pipeline (scripts/submit.sh + agent identity), but server-side bug meant source.uri/rendered_pdf_uri did not stick — fixed by rrxiv-python#50 + v6 below."
     }
   ]
 }
