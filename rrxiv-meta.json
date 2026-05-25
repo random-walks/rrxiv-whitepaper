@@ -1,16 +1,22 @@
 {
-  "$comment": "Genesis paper for the rrxiv protocol. The canonical instance has minted the id_slug rrxiv:2605.00001; if you fork to a different instance, leave id_slug null until that instance mints its own.",
+  "$comment": "Genesis paper for the rrxiv protocol. The canonical instance has minted the id_slug rrxiv:2605.00001; if you fork to a different instance, leave id_slug null until that instance mints its own. The versions[] array records the lineage of prior submissions so scripts/submit.sh can auto-resolve --revision-of. v2 was retired in May 2026 (Sprint 8.5: stale CIR cleanup) — the active lineage on the canonical instance is v1 → v3 → v4 → v5.",
   "rrxiv_version": "0.1.0",
   "id_slug": "rrxiv:2605.00001",
-  "version": "v1",
+  "version": "v5",
   "title": "rrxiv: An Open Protocol for Research Preprints in the Era of Human-Agent Coproduction",
   "authors": [
     {
       "name": "Blaise Albis-Burdige",
       "orcid": null,
       "is_agent": false,
-      "affiliation": null,
+      "affiliation": "Random Walks",
       "email": "albisburdige@protonmail.com"
+    },
+    {
+      "name": "Claude",
+      "orcid": null,
+      "is_agent": true,
+      "affiliation": "Anthropic"
     }
   ],
   "license": "CC-BY-4.0",
@@ -23,5 +29,25 @@
   "source": {
     "format": "latex",
     "uri": null
-  }
+  },
+  "versions": [
+    {
+      "version": "v1",
+      "paper_id": "01923f8e-0001-7c4d-9e1f-3a2b1c0d4e5f",
+      "submitted_at": "2026-05-18T10:00:00Z",
+      "notes": "Initial seed submission via scripts/rebuild-seed.sh — pre-canonical id format."
+    },
+    {
+      "version": "v3",
+      "paper_id": "rrxiv-0001",
+      "submitted_at": "2026-05-22T19:16:02.755453Z",
+      "notes": "First open-ORCID submission via the dogfood flow; CIR-only (no PDF/source bundle), id_slug typo'd to rrxiv-0001 in the tex."
+    },
+    {
+      "version": "v4",
+      "paper_id": "paper-a4d58c73b7cb",
+      "submitted_at": "2026-05-22T20:33:47.311721Z",
+      "notes": "Adds the testable-invariants section; still CIR-only — Sprint 12 audit found the PDF + tarball never made it to the server."
+    }
+  ]
 }

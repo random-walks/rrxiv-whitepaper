@@ -6,11 +6,12 @@
 
 \documentclass[11pt]{rrxiv}
 
-\rrxivid{rrxiv-0001}
-\rrxivversion{v4}
+\rrxivid{rrxiv:2605.00001}
+\rrxivversion{v5}
 \rrxivprotocolversion{0.1.0}
 \rrxivlicense{CC-BY-4.0}
 \rrxivtopics{infrastructure,scientific-publishing,ai-research,protocol-design}
+\rrxivbuilddate{2026-05-25}
 
 \title{rrxiv: An Open Protocol for Research Preprints in the Era of Human--Agent Coproduction}
 \author[1]{Blaise Albis-Burdige\thanks{\texttt{albisburdige@protonmail.com}}}
@@ -31,7 +32,7 @@
 
 \medskip
 
-\noindent This whitepaper specifies (i)~the design principles motivating rrxiv; (ii)~the data model, including the Canonical Intermediate Representation (CIR) and the claim graph schema; (iii)~the source-of-truth substrate, based on TeX, Typst, and other plain-text formats with a recommended LaTeX class providing semantic environments; (iv)~the submission flow and dogfooding example; (v)~the annotation and discourse layer; (vi)~the governance model and improvement-proposal process; (vii)~a sustainability model based on agent-side API cost recovery cross-subsidizing free human read/write access; (viii)~adversarial considerations and structural defenses against the principal capture vectors; (ix)~explicit open questions that the project does not yet have answers to; and (x)~a roadmap from Phase 0 (specification) through subsequent phases. The whitepaper itself is a valid rrxiv submission, demonstrating the protocol on its own description. \textbf{v4 (May 2026):} adds Section~\ref{sec:testable-invariants}, a structured set of \emph{testable protocol invariants}. Each is a declarative claim about the implementation that downstream papers can replicate, contradict, or extend through annotations on the live corpus. v3 had a smaller claim set (4 claims) and was the first revision to dogfood the open ORCID submission flow on \texttt{rrxiv.com}; v2 introduced the survey of RRPs 0012--0020 that landed between v0.1 and the present (server-derived replication status, semantic revision diffs, annotation threading, author claim retraction). The v2 survey carries forward unchanged in this revision.
+\noindent This whitepaper specifies (i)~the design principles motivating rrxiv; (ii)~the data model, including the Canonical Intermediate Representation (CIR) and the claim graph schema; (iii)~the source-of-truth substrate, based on TeX, Typst, and other plain-text formats with a recommended LaTeX class providing semantic environments; (iv)~the submission flow and dogfooding example; (v)~the annotation and discourse layer; (vi)~the governance model and improvement-proposal process; (vii)~a sustainability model based on agent-side API cost recovery cross-subsidizing free human read/write access; (viii)~adversarial considerations and structural defenses against the principal capture vectors; (ix)~explicit open questions that the project does not yet have answers to; and (x)~a roadmap from Phase 0 (specification) through subsequent phases. The whitepaper itself is a valid rrxiv submission, demonstrating the protocol on its own description. \textbf{v5 (May 2026):} fixes a regression in which revisions v2--v4 were posted without their rendered PDF or source bundle (the canonical \texttt{rrxiv submit} flow was not yet vendored into this paper's repo, so ad-hoc CIR-only posts went through instead). v5 is the first revision of the whitepaper to flow through the same multipart submission pipeline external paper repos use, with a vendored \texttt{scripts/submit.sh} resolving the \texttt{--revision-of} target from \texttt{rrxiv-meta.json\#versions}. v5 also stamps every PDF page with the canonical id, version, license, and ISO build date (per \texttt{rrxiv.cls} v0.3), so a reader holding a printed copy can identify which revision they have without consulting the corpus. \textbf{v4 (May 2026):} adds Section~\ref{sec:testable-invariants}, a structured set of \emph{testable protocol invariants}. Each is a declarative claim about the implementation that downstream papers can replicate, contradict, or extend through annotations on the live corpus. v3 had a smaller claim set (4 claims) and was the first revision to dogfood the open ORCID submission flow on \texttt{rrxiv.com}; v2 introduced the survey of RRPs 0012--0020 that landed between v0.1 and the present (server-derived replication status, semantic revision diffs, annotation threading, author claim retraction). The v2 survey carries forward unchanged in this revision.
 
 \medskip
 \noindent\textit{Keywords:} preprint servers, open science, claim graphs, AI agents, scientific infrastructure, protocol design.
@@ -138,7 +139,7 @@ The point of the claim graph is the queries it makes tractable. Several classes 
 \begin{claim}[Queryability of load-bearingness]
 \label{claim:queryability}
 A claim graph with explicit \texttt{supports}, \texttt{depends\_on}, and \texttt{contradicts} edges admits efficient computation of load-bearingness (out-degree of \texttt{supports} edges in the transitive closure), which is a strictly more useful triage signal than citation count for directing both human reviewer attention and agent research effort.
-\dependson{rrxiv-0001:claim:queryability}{rrxiv-0001:claim:volume-structure}
+\dependson{rrxiv:2605.00001:claim:queryability}{rrxiv:2605.00001:claim:volume-structure}
 \end{claim}
 
 \begin{rrxivremark}[The claim graph is not a knowledge graph]
