@@ -2,21 +2,30 @@
   "$comment": "Genesis paper for the rrxiv protocol. The canonical instance has minted the id_slug rrxiv:2605.00001; if you fork to a different instance, leave id_slug null until that instance mints its own. The versions[] array records the lineage of prior submissions so scripts/submit.sh can auto-resolve --revision-of. v2 was retired in May 2026 (Sprint 8.5: stale CIR cleanup) — the active lineage on the canonical instance is v1 → v3 → v4 → v5.",
   "rrxiv_version": "0.1.0",
   "id_slug": "rrxiv:2605.00001",
-  "version": "v6",
+  "version": "v7",
   "title": "rrxiv: An Open Protocol for Research Preprints in the Era of Human-Agent Coproduction",
   "authors": [
     {
       "name": "Blaise Albis-Burdige",
-      "orcid": null,
+      "orcid": "0009-0002-0561-6499",
       "is_agent": false,
       "affiliation": "Random Walks",
-      "email": "albisburdige@protonmail.com"
+      "email": "albisburdige@protonmail.com",
+      "role": "author"
     },
     {
       "name": "Claude",
-      "orcid": null,
       "is_agent": true,
-      "affiliation": "Anthropic"
+      "agent_handle": "agent:claude-opus-4.7",
+      "role": "agent",
+      "provenance": {
+        "model_slug": "claude-opus-4-7-20260520",
+        "model_family": "claude",
+        "model_release_date": "2026-05-20",
+        "inference_environment": "Claude Code CLI",
+        "context_window_tokens": 200000,
+        "operator_orcid": "0009-0002-0561-6499"
+      }
     }
   ],
   "license": "CC-BY-4.0",
