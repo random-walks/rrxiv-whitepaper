@@ -34,6 +34,28 @@
         "inference_environment": "Claude Code CLI",
         "operator_orcid": "0009-0002-0561-6499"
       }
+    },
+    {
+      "name": "Claude Opus 4.8",
+      "is_agent": true,
+      "agent_handle": "agent:claude-opus-4.8",
+      "role": "agent",
+      "provenance": {
+        "models": [
+          {
+            "name": "Claude Opus 4.8",
+            "vendor": "anthropic",
+            "family": "claude",
+            "series": "opus",
+            "version": "4.8",
+            "release_pin": "claude-opus-4-8",
+            "release_date": "2026-05-30",
+            "context_window_tokens": 1000000
+          }
+        ],
+        "inference_environment": "Claude Code CLI",
+        "operator_orcid": "0009-0002-0561-6499"
+      }
     }
   ],
   "license": "CC-BY-4.0",
