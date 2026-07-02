@@ -1,12 +1,18 @@
 cff-version: 1.2.0
 message: "If you cite rrxiv as a protocol, please cite this paper as the canonical reference."
-type: article
+type: software
 title: "rrxiv: An Open Protocol for Research Preprints in the Era of Human-Agent Coproduction"
 authors:
   - family-names: "Albis-Burdige"
     given-names: "Blaise"
     email: "albisburdige@protonmail.com"
-date-released: 2026-05-04
+  - name: "Claude Opus 4.7"
+  - name: "Claude Opus 4.8"
+identifiers:
+  - type: other
+    value: "rrxiv:2605.00001"
+    description: "Canonical rrxiv id_slug on the rrxiv.com instance"
+date-released: 2026-05-30
 license: CC-BY-4.0
 url: "https://rrxiv.com/papers/rrxiv:2605.00001"
 repository-code: "https://github.com/random-walks/rrxiv-whitepaper"
@@ -24,4 +30,6 @@ preferred-citation:
   authors:
     - family-names: "Albis-Burdige"
       given-names: "Blaise"
+    - name: "Claude Opus 4.7"
+    - name: "Claude Opus 4.8"
   notes: "Whitepaper v6, protocol v0.1.0"
