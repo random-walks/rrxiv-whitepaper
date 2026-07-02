@@ -16,7 +16,7 @@ CI in `.github/workflows/build.yml` runs all three on every push and attaches th
 
 ## Status
 
-- **Version**: v1 (matching `rrxivversion{v1}` in `paper/main.tex`)
+- **Version**: v6 — `\rrxivversion` in `paper/main.tex` is authoritative; full lineage in `rrxiv-meta.json`'s `versions[]`
 - **Protocol version**: 0.1.0
 - **Licence**: CC-BY-4.0 (content) + MIT (build code)
 - **Canonical id (when ingested into the reference instance)**: `rrxiv:2605.00001`
@@ -33,7 +33,7 @@ The drafts that produced this version live in the `papers/whitepaper-iteration/`
   author = {Albis-Burdige, Blaise},
   year   = {2026},
   url    = {https://rrxiv.com/papers/rrxiv:2605.00001},
-  note   = {Whitepaper v1, protocol v0.1.0}
+  note   = {Whitepaper v6, protocol v0.1.0}
 }
 ```
 
