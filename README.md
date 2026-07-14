@@ -14,12 +14,21 @@ This is the first paper published on rrxiv, and it describes the protocol that p
 
 CI in `.github/workflows/build.yml` runs all three on every push and attaches the artifacts to each run.
 
+The rrxiv reference client (parser + CLI + SDK) is on PyPI:
+
+```sh
+pip install rrxiv
+rrxiv parse paper/main.tex --output build/main.cir.json
+```
+
+(Revisions that use authoring surface newer than the latest PyPI release — e.g. the RRP-0030 claim keys used from v7 on — need the client from source: `github.com/random-walks/rrxiv-python`.)
+
 ## Status
 
-- **Version**: v6 — `\rrxivversion` in `paper/main.tex` is authoritative; full lineage in `rrxiv-meta.json`'s `versions[]`
+- **Version**: v7 draft — `\rrxivversion` in `paper/main.tex` is authoritative; the live instance's head is v6 until the v7 submission lands; full lineage in `rrxiv-meta.json`'s `versions[]`
 - **Protocol version**: 0.1.0
 - **Licence**: CC-BY-4.0 (content) + MIT (build code)
-- **Canonical id (when ingested into the reference instance)**: `rrxiv:2605.00001`
+- **Canonical id**: [`rrxiv:2605.00001`](https://rrxiv.com/papers/rrxiv:2605.00001) — live on the canonical instance
 
 ## History
 
