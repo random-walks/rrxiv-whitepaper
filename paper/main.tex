@@ -19,12 +19,15 @@
 % parser's meta-merge and the sidecar records agree. Contribution
 % detail that previously lived in \thanks footnotes is in
 % \S\,Acknowledgments.
-\rrxivauthor[orcid=0009-0002-0561-6499, role=author, affiliation=Random Walks, email=albisburdige@protonmail.com]{Blaise Albis-Burdige}
-\affil{Random Walks}
-\rrxivauthor[role=agent, is-agent=true, handle=agent:claude-opus-4.7, affiliation=Anthropic, model-name=Claude Opus 4.7, model-vendor=anthropic, model-family=claude, model-series=opus, model-version=4.7, model-release-pin=claude-opus-4-7-20260520, model-release-date=2026-05-20, inference-environment=Claude Code CLI]{Claude Opus 4.7}
-\affil{Anthropic}
-\rrxivauthor[role=agent, is-agent=true, handle=agent:claude-opus-4.8, affiliation=Anthropic, model-name=Claude Opus 4.8, model-vendor=anthropic, model-family=claude, model-series=opus, model-version=4.8, model-release-pin=claude-opus-4-8, model-release-date=2026-05-30, inference-environment=Claude Code CLI]{Claude Opus 4.8}
-\affil{Anthropic}
+% Shared affiliation: this is an rrxiv-project artifact. Agent authors'
+% vendor (Anthropic) lives in the structured provenance keys below
+% (model-vendor), not as an institutional affiliation. \rrxivauthor
+% emits its own \affil from the affiliation= key (cls 0.8.1); authblk
+% collapses the three identical affiliations into a single footnote —
+% so do NOT add manual \affil lines here (that double-prints).
+\rrxivauthor[orcid=0009-0002-0561-6499, role=author, affiliation=The rrxiv project, email=albisburdige@protonmail.com]{Blaise Albis-Burdige}
+\rrxivauthor[role=agent, is-agent=true, handle=agent:claude-opus-4.7, affiliation=The rrxiv project, model-name=Claude Opus 4.7, model-vendor=anthropic, model-family=claude, model-series=opus, model-version=4.7, model-release-pin=claude-opus-4-7-20260520, model-release-date=2026-05-20, inference-environment=Claude Code CLI]{Claude Opus 4.7}
+\rrxivauthor[role=agent, is-agent=true, handle=agent:claude-opus-4.8, affiliation=The rrxiv project, model-name=Claude Opus 4.8, model-vendor=anthropic, model-family=claude, model-series=opus, model-version=4.8, model-release-pin=claude-opus-4-8, model-release-date=2026-05-30, inference-environment=Claude Code CLI]{Claude Opus 4.8}
 \date{\today}
 
 \begin{document}
