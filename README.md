@@ -17,11 +17,11 @@ CI in `.github/workflows/build.yml` runs all three on every push and attaches th
 The rrxiv reference client (parser + CLI + SDK) is on PyPI:
 
 ```sh
-pip install rrxiv
+pip install 'rrxiv>=0.2.1'
 rrxiv parse paper/main.tex --output build/main.cir.json
 ```
 
-(Revisions that use authoring surface newer than the latest PyPI release — e.g. the RRP-0030 claim keys used from v7 on — need the client from source: `github.com/random-walks/rrxiv-python`.)
+(The RRP-0030 claim keys used from v7 on need a >=0.2 parser — hence the version floor.)
 
 ## Status
 
